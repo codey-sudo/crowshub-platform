@@ -1,0 +1,32 @@
+services:
+  database:
+    image: mysql:8.0
+    container_name: crowshub-mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress_user
+      MYSQL_PASSWORD: wordpress_password
+      MYSQL_ROOT_PASSWORD: root_password
+    volumes:
+      - database_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    container_name: crowshub-wordpress
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: database:3306
+      WORDPRESS_DB_USER: wordpress_user
+      WORDPRESS_DB_PASSWORD: wordpress_password
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wordpress_data:/var/www/html
+    depends_on:
+      - database
+
+volumes:
+  database_data:
+  wordpress_data:
