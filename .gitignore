@@ -1,0 +1,17 @@
+# WordPress
+wordpress/wp-content/uploads/
+
+# Database files
+database/
+
+# Environment variables
+.env
+
+# Node modules (for future Next.js)
+node_modules/
+
+# Build files
+.next/
+
+# macOS files
+.DS_Store
